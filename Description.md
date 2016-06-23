@@ -77,19 +77,22 @@ t % (10 -> 1) do: [:p | p value: i. i := i + 1].
 i := -1.
 (t - 1) % (10 -> -1) do: [:p | p value: i. i := i - 1].
 (t | 1 collect: [:p | p value]) asArray = #(1 2 3 4 5 6 7 8 9 10 nil -10 -9 -8 -7 -6 -5 -4 -3 -2 -1)
-
+```
+```
 t := Torus shape: #(3 5).
 i := 1.
 t | 1 | 2 do: [:p | p value: i. i := i + 1].
 (t | 2 | 1 collect: [:p | p value]) asArray = #(1 6 11 2 7 12 3 8 13 4 9 14 5 10 15)
-
+```
+```
 t := Torus shape: #(7 5).
 t | 1 | 2 do: [:p | p value: 0].
 i := 1.
 t @ #(4 -3) % (4 -> 1) % (2 -> -2) do: [:p | p value: i. i := i + 1].
 w := t | 1 collect: [:p | String withAll: (p | 2 collect: [:q | Character digitValue: q value])].
 w asArray = #('08700' '00000' '00000' '00000' '02100' '04300' '06500')
-
+```
+```
 t := Torus shape: #(3 2 5).
 w := (OrderedCollection new)
     add: t | 1;
@@ -101,7 +104,8 @@ w := (OrderedCollection new)
     add: t | 1 | 2 | 3;
     yourself.
 (w collect: [:c | c size]) asArray = #(3 2 5 6 15 10 30)
-
+```
+```
 t := Torus shape: #(5 3).
 1 to: 5 do: 
     [:k |
@@ -110,19 +114,22 @@ t := Torus shape: #(5 3).
     t + 2 + 2 value: k * 100.
     t := t + 1].
 (((t + 1) % (2 -> 1) , (t - 2 | 0)) % (4 -> -2) collect: [:p | p value]) asArray = #(2 200 20 2 3 300 30 3 100 10 1 100)
-
+```
+```
 t := Torus shape: #(5).
 1 to: 5 do: [:k | t value: k. t := t + 1].
 b := nil.
 b := [:p | p - 1 - 1 & b].
 (((b value: t + 1 + 1 + 1) % (2 -> 1) first: 13) collect: [:p | p value]) asArray = #(2 3 5 1 3 4 1 2 4 5 2 3 5)
-
+```
+```
 t := Torus shape: #(5).
 1 to: 5 do: [:k | t value: k. t := t + 1].
 b := nil.
 b := [:p | p value = 2 ifFalse: [p + 1 + 1 & b]].
 ((b value: t - 1 - 1) collect: [:p | p value]) asArray = #(1 3 5 2)
-
+```
+```
 ((((Torus shape: #(1000)) | 1 | 1 | 1 | 1 | 1) anyOne) value: 11; value) = 11
 ```
 
@@ -130,7 +137,7 @@ b := [:p | p value = 2 ifFalse: [p + 1 + 1 & b]].
 
 Nie trzeba sprawdzać poprawności argumentów komunikatu.
 
-W komunikatach o błędzie, tekstowa reprezentacja obiektu jest budowana za pomocą #printOn:. Metoda #printOn: w klasie Collection korzysta z #do:. Ewentualny błąd w metodzie #do: może więc spowodować kaskadę kolejnych błędów. By tego uniknąć, warto na czas pracy nad programem tymczasowo przedefiniować metodę #printOn: spaceru tak, by nie korzystała z #do:.
+W komunikatach o błędzie, tekstowa reprezentacja obiektu jest budowana za pomocą ```#printOn:```. Metoda ```#printOn:``` w klasie ```Collection``` korzysta z ```#do:```. Ewentualny błąd w metodzie ```#do:``` może więc spowodować kaskadę kolejnych błędów. By tego uniknąć, warto na czas pracy nad programem tymczasowo przedefiniować metodę ```#printOn:``` spaceru tak, by nie korzystała z ```#do:```.
 
 ###Uwagi
 
