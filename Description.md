@@ -1,6 +1,6 @@
-Spacer po torusie
+#Spacer po torusie
 
-Wprowadzenie
+###Wprowadzenie
 
 Wszystkie liczby w treści tego zadania są całkowite. Resztą z dzielenia liczby a przez dodatnią, czyli większą od zera, liczbę b nazywamy wartość mod(a, b), spełniającą warunki 0 ≤ mod(a, b) < b oraz a = q b + mod(a, b) dla pewnej liczby q.
 
@@ -18,43 +18,44 @@ W torusie, traktowanym jak struktura danych, punkty przechowują wartości.
 
 Za reprezentację torusa może służyć dowolny jego punkt.
 
-Polecenie
+###Polecenie
 
 Zdefiniuj klasę Torus, spełniającą poniższe warunki:
 
-Klasa Torus reaguje na komunikat #shape:, z argumentem s będącym niepustą uporządkowaną kolekcją dodatnich liczb, tworząc nowy torus kształtu s i dając jeden z jego punktów.
+Klasa Torus reaguje na komunikat ```#shape:```, z argumentem s będącym niepustą uporządkowaną kolekcją dodatnich liczb, tworząc nowy torus kształtu s i dając jeden z jego punktów.
 
-Punkt torusa, w odpowiedzi na komunikat #value, daje przechowywaną przez siebie wartość. Początkową wartością przechowywaną przez punkt jest nil.
+Punkt torusa, w odpowiedzi na komunikat ```#value```, daje przechowywaną przez siebie wartość. Początkową wartością przechowywaną przez punkt jest ```nil```.
 
-Komunikat #value:, wysłany do punktu torusa, powoduje zapisanie w nim, jako wartości, obiektu będącego argumentem komunikatu.
+Komunikat ```#value:```, wysłany do punktu torusa, powoduje zapisanie w nim, jako wartości, obiektu będącego argumentem komunikatu.
 
-Metoda #printOn: punktu torusa wypisuje na strumień, który dostaje jako argument, wartość przechowywaną w tym punkcie.
+Metoda ```#printOn:``` punktu torusa wypisuje na strumień, który dostaje jako argument, wartość przechowywaną w tym punkcie.
 
-Punkt p torusa, w odpowiedzi na komunikat #+ z argumentem j, daje punkt po p w kierunku j.
+Punkt p torusa, w odpowiedzi na komunikat ```#+``` z argumentem j, daje punkt po p w kierunku j.
 
-Na komunikat #- z argumentem j punkt torusa reaguje tak, jak na komunikat #+ z argumentem j negated.
+Na komunikat ```#-``` z argumentem j punkt torusa reaguje tak, jak na komunikat ```#+``` z argumentem j negated.
 
-Wysłanie komunikatu #@ do punktu p torusa wymiaru k, z argumentem będącym uporządkowaną kolekcją liczb v o długości k, daje punkt odległy od p o wektor v. W torusie o kształcie (n1, … nk), dla punktu o współrzędnych (i1, … ik) i wektora (d1, … dk) jest to punkt o współrzędnych (mod(i1 + d1, n1), … mod(ik + dk, nk)).
+Wysłanie komunikatu ```#@``` do punktu p torusa wymiaru k, z argumentem będącym uporządkowaną kolekcją liczb v o długości k, daje punkt odległy od p o wektor v. W torusie o kształcie (n1, … nk), dla punktu o współrzędnych (i1, … ik) i wektora (d1, … dk) jest to punkt o współrzędnych (mod(i1 + d1, n1), … mod(ik + dk, nk)).
 
-Odpowiedzią na komunikat #| wysłany do punktu p torusa, z argumentem będącym kierunkiem j, jest spacer po wszystkich punktach tego torusa, które mają współrzędne o indeksie innym niż abs(j) takie, jak punkt p. Punkty w tym spacerze nie powtarzają się. Pierwszym punktem spaceru jest p a każdy następny jest kolejnym punktem, po swoim poprzedniku, w kierunku j. Zwracamy uwagę, że dla j = 0, spacer p | j jest jednoelementowy.
+Odpowiedzią na komunikat ```#|``` wysłany do punktu p torusa, z argumentem będącym kierunkiem j, jest spacer po wszystkich punktach tego torusa, które mają współrzędne o indeksie innym niż abs(j) takie, jak punkt p. Punkty w tym spacerze nie powtarzają się. Pierwszym punktem spaceru jest p a każdy następny jest kolejnym punktem, po swoim poprzedniku, w kierunku j. Zwracamy uwagę, że dla j = 0, spacer p | j jest jednoelementowy.
 
-Dla nieujemnej liczby i oraz kierunku j, do punktu p torusa można wysłać komunikat #% z argumentem i -> j, będącym obiektem standardowej, Smalltalkowej klasy Association. Jako wartość wyrażenia p % (i -> j) dostajemy i-elementowy spacer po torusie zaczynający się od punktu p, w którym każdy następny punkt jest kolejnym, po swoim poprzedniku, w kierunku j. Uwaga - w tak utworzonym spacerze punkty mogą się powtarzać.
+Dla nieujemnej liczby i oraz kierunku j, do punktu p torusa można wysłać komunikat ```#%``` z argumentem i -> j, będącym obiektem standardowej, Smalltalkowej klasy Association. Jako wartość wyrażenia p % (i -> j) dostajemy i-elementowy spacer po torusie zaczynający się od punktu p, w którym każdy następny punkt jest kolejnym, po swoim poprzedniku, w kierunku j. Uwaga - w tak utworzonym spacerze punkty mogą się powtarzać.
 
-Metoda #do: spaceru s odwiedza punkty torusa w kolejności określonej przez s. Odwiedzając punkt p, wykonuje ona blok, który jest argumentem #do:, przekazując mu jako argument cały punkt p, a nie przechowywaną przez niego wartość.
+Metoda ```#do:``` spaceru s odwiedza punkty torusa w kolejności określonej przez s. Odwiedzając punkt p, wykonuje ona blok, który jest argumentem ```#do:```, przekazując mu jako argument cały punkt p, a nie przechowywaną przez niego wartość.
 
-Spacer s, w odpowiedzi na komunikat #, (przecinek) z argumentem t będącym spacerem, daje sklejenie (konkatenację) spacerów s i t. Punkty spaceru s poprzedzają w niej punkty spaceru t a kolejność punktów w ramach obu sklejanych spacerów jest zachowana. Jeśli spacer s jest nieskończony, odwiedzając punkty w kolejności wyznaczonej przez spacer s , t, do punktów spaceru t nigdy nie dojdziemy.
+Spacer s, w odpowiedzi na komunikat ```#,``` (przecinek) z argumentem t będącym spacerem, daje sklejenie (konkatenację) spacerów s i t. Punkty spaceru s poprzedzają w niej punkty spaceru t a kolejność punktów w ramach obu sklejanych spacerów jest zachowana. Jeśli spacer s jest nieskończony, odwiedzając punkty w kolejności wyznaczonej przez spacer s , t, do punktów spaceru t nigdy nie dojdziemy.
 
-Spacer s rozumie komunikat #| z argumentem x. W odpowiedzi daje sklejenie, z zachowaniem kolejności, wszystkich spacerów będących wynikiem wysłania komunikatu #| z argumentem x do punktów spaceru s.
+Spacer s rozumie komunikat ```#|``` z argumentem x. W odpowiedzi daje sklejenie, z zachowaniem kolejności, wszystkich spacerów będących wynikiem wysłania komunikatu ```#|``` z argumentem x do punktów spaceru s.
 
-Analogicznie, spacer s w odpowiedzi na komunikat #% z argumentem x daje sklejenie, z zachowaniem kolejności, wszystkich spacerów będących wynikiem wysłania komunikatu #% z argumentem x do punktów spaceru s.
+Analogicznie, spacer s w odpowiedzi na komunikat ```#%``` z argumentem x daje sklejenie, z zachowaniem kolejności, wszystkich spacerów będących wynikiem wysłania komunikatu ```#%``` z argumentem x do punktów spaceru s.
 
-Punkt p torusa, w odpowiedzi na komunikat #& z jednoargumentowym blokiem b, daje spacer s. Pierwszym punktem spaceru s jest p. Podczas odwiedzania punktów spaceru s metodą #do:, po odwiedzeniu p obliczana jest wartość w równa b value: p. Jeśli w to nil, spacer się kończy. W przeciwnym przypadku w jest spacerem, którego punkty mają być odwiedzone w następnej kolejności, po punkcie p. Zwracamy uwagę, że metoda ta umożliwia zbudowanie nieskończonego spaceru.
+Punkt p torusa, w odpowiedzi na komunikat ```#&``` z jednoargumentowym blokiem b, daje spacer s. Pierwszym punktem spaceru s jest p. Podczas odwiedzania punktów spaceru s metodą ```#do:```, po odwiedzeniu p obliczana jest wartość w równa b value: p. Jeśli w to nil, spacer się kończy. W przeciwnym przypadku w jest spacerem, którego punkty mają być odwiedzone w następnej kolejności, po punkcie p. Zwracamy uwagę, że metoda ta umożliwia zbudowanie nieskończonego spaceru.
 
-Spacer rozumie wszystkie komunikaty odpowiadające metodom klasy Collection. Jego klasowe metody #new i #new: oraz obiektowe metody #add: i #remove:ifAbsent: są zablokowane za pomocą #shouldNotImplement a obiektowa metoda #species daje jako wynik klasę OrderedCollection.
-Przykłady
+Spacer rozumie wszystkie komunikaty odpowiadające metodom klasy ```Collection```. Jego klasowe metody ```#new``` i ```#new:``` oraz obiektowe metody ```#add:``` i ```#remove:ifAbsent:``` są zablokowane za pomocą ```#shouldNotImplement``` a obiektowa metoda ```#species``` daje jako wynik klasę OrderedCollection.
+
+###Przykłady
 
 Jeden z przykładów korzysta z pomocniczej metody spaceru:
-
+```
 first: anInteger
 
     | answer i |
@@ -67,9 +68,9 @@ first: anInteger
         i := i - 1.
         i = 0 ifTrue: [^answer]].
     ^answer
-
+```
 Każdy z poniższych fragmentów kodu, obliczony w Workspace, powinien dać wartość true.
-
+```
 t := Torus shape: #(21).
 i := 1.
 t % (10 -> 1) do: [:p | p value: i. i := i + 1].
@@ -123,13 +124,14 @@ b := [:p | p value = 2 ifFalse: [p + 1 + 1 & b]].
 ((b value: t - 1 - 1) collect: [:p | p value]) asArray = #(1 3 5 2)
 
 ((((Torus shape: #(1000)) | 1 | 1 | 1 | 1 | 1) anyOne) value: 11; value) = 11
+```
 
-Wskazówki
+###Wskazówki
 
 Nie trzeba sprawdzać poprawności argumentów komunikatu.
 
 W komunikatach o błędzie, tekstowa reprezentacja obiektu jest budowana za pomocą #printOn:. Metoda #printOn: w klasie Collection korzysta z #do:. Ewentualny błąd w metodzie #do: może więc spowodować kaskadę kolejnych błędów. By tego uniknąć, warto na czas pracy nad programem tymczasowo przedefiniować metodę #printOn: spaceru tak, by nie korzystała z #do:.
 
-Uwagi
+###Uwagi
 
 Rozwiązanie powinno mieć formę pakietu (pliku .pac) implementacji Dolphin Smalltalk 7. Oprócz definicji klasy Torus, w pakiecie należy umieścić wszystkie potrzebne niestandardowe klasy i metody.
